@@ -1,0 +1,8 @@
+{
+    "name": "Vita Accredo",
+    "short_name": "VitaAccredo",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Health insurance portal of vita accredo."
+}

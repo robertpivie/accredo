@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>sign in 2</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <section id="sign-in-2">
+            <p>Please enter the passcode we sent to your phone number.</p>
+            <form onsubmit="event.preventDefault(); enter(this)">
+                <span>
+                    <label for="phone">13 Digit Passcode:</label>
+                    <input type="text" name="passcode" placeholder="#############" pattern="^\d{13}$" required />
+                </span>
+                <button type="submit">Enter</button>
+            </form>
+            <small>
+                <a href="#sign-in">retry</a>
+            </small>
+        </section>
+    </body>
+</html>

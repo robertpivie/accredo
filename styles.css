@@ -1,0 +1,136 @@
+body {
+    margin: 0 8px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+body * {
+    font-family: 'Verdana', sans-serif;
+    transition: all 0.2s ease-in-out;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    line-height: 30px;
+}
+
+nav:after {
+    content: '';
+    width: 100%;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.48);
+    border-width: 0 0 2px 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+}
+
+nav h1,
+nav h2,
+nav h3,
+nav h5,
+nav h4,
+nav h6 {
+    margin: 0;
+}
+
+main {
+    height: 100vh;
+    margin: 27px auto;
+}
+
+form,
+div,
+table,
+button,
+input {
+    border-style: solid;
+    border-color: rgba(0,0,0,0);
+    border-width: 2px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+}
+
+form:hover,
+div:hover,
+table:hover,
+button:hover,
+input:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.24), 0 2px 6px rgba(0,0,0,0.48);
+}
+
+form {
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+div {
+    padding: 2px;
+}
+
+button {
+    background: white;
+    padding: 0;
+    margin: 0;
+}
+
+button:not(disabled) {
+    cursor: pointer;
+}
+
+input {
+    height: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+input:disabled {
+    background: white;
+    cursor: text;
+}
+
+th {
+    text-align: left;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-shadow: 0 2px 6px rgba(0,0,0,0.48);
+}
+
+a:not(disabled) {
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer:before {
+    content: '';
+    width: 100%;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.48);
+    border-width: 0 0 2px 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+}
+
+.hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0;
+    box-shadow: 0 !important;
+}

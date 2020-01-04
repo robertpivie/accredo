@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>home</title>
+        <style>
+            #home {
+                margin: 30px 0;
+                text-align: center;
+            }
+            #home div {
+                padding: 100px 100px;
+            }
+            #home .icon {
+                font-size: 3em;
+            }
+            @media only screen and (max-width: 412px) {
+                #home .slide {
+                    padding: 100px 30px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section id="home">
+            <div id="dont" class="slide">
+                <span class="icon">😬</span>
+                <span class="icon">🏢</span class="icon">
+                <span class="icon">🩹</span class="icon">
+                <p>Don't let big insurance get between you and your health!</p>
+            </div>
+            <div id="do" class="slide hidden">
+                <span class="icon">😁</span class="icon">
+                <span class="icon">🩹</span class="icon">
+                <p>Be accountable for your medical expenses.</p>
+            </div>
+        </section>
+    </body>
+</html>

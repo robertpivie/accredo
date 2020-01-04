@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>sign in</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <section id="sign-in">
+            <p>Please enter your phone number below so that we can send you a one time passcode.</p>
+            <form onsubmit="event.preventDefault(); getPasscode(this)">
+                <span>
+                    <label for="phone">13 Digit Phone Number:</label>
+                    <input type="text" name="phone" placeholder="#############" pattern="^\d{13}$" required />
+                </span>
+                <button type="submit">Get Passcode</button>
+            </form>
+        </section>
+    </body>
+</html>
