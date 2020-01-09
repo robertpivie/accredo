@@ -1,5 +1,7 @@
+const OۆO = {};
+
 /// on load ///
-registerSW = async () => {
+OۆO.registerSW = async () => {
     if (!navigator.serviceWorker) {
         return;
     }
@@ -9,41 +11,58 @@ registerSW = async () => {
         console.error('service worker is not operational')
     }
 }
-registerSW();
+OۆO.registerSW();
 
-/// auth ///
-const user = { }
-
-/// navigation ///
-const showPage = (page) => {
-    page = page.replace('#', '');
-    const main = document.getElementById('main');
-    while (main.firstChild) { main.removeChild(main.firstChild); }
+/// common ///
+OۆO.setTemplate = (template, target, replacements, callback) => {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById('main').innerHTML = xhttp.responseText;
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.onreadystatechange = () => {
-                if (script.readyState == 'loaded' || script.readyState == 'complete') {
-                    script.onreadystatechange = null;
-                }
-            };
-            script.src = page + '.js';
-            document.getElementById('main').appendChild(script);
+            let response = xhttp.responseText;
+            if (replacements) {  
+                Object.keys(replacements).forEach(key => {
+                    response = response.replace(key, replacements[key]);
+                });
+            }
+            document.getElementById(target).innerHTML = template === 'main' ? response : document.getElementById(target).innerHTML + response;
+            if (callback) {
+                callback();
+            }
         } else if (this.status === 404) {
             showPage('404');
         }
     };
-    xhttp.open('GET', page + '.html', true);
+    xhttp.open('GET', template + '.html', true);
     xhttp.send();
+};
+
+/// auth ///
+OۆO.user = { }
+
+/// navigation ///
+OۆO.showPage = (page) => {
+    page = page.replace('#', '');
+    const main = document.getElementById('main');
+    while (main.firstChild) {
+        main.removeChild(main.firstChild);
+    }
+    OۆO.setTemplate(page, 'main', null, () => {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.onreadystatechange = () => {
+            if (script.readyState == 'loaded' || script.readyState == 'complete') {
+                script.onreadystatechange = null;
+            }
+        };
+        script.src = page + '.js';
+        document.getElementById('main').appendChild(script);
+    });
 }
-showPage(window.location.hash || 'home');
-window.addEventListener('hashchange', () => { showPage(window.location.hash) }, false);
+OۆO.showPage(window.location.hash || 'home');
+window.addEventListener('hashchange', () => { OۆO.showPage(window.location.hash) }, false);
 
 /// get form data ///
-const validateData = () => {
+OۆO.validateData = () => {
 	const validities = {};
 	for (let i = 0; i < form.elements.length; i++) {
 		const field = form.elements[i];
@@ -63,7 +82,7 @@ const validateData = () => {
 	}
 	return validities;
 }
-const getData = (form) => {
+OۆO.getData = (form) => {
 	const data = {};
 	for (let i = 0; i < form.elements.length; i++) {
 		const field = form.elements[i];
@@ -83,3 +102,53 @@ const getData = (form) => {
 	}
 	return data;
 };
+
+/// slider ///
+OۆO.slide;
+OۆO.slides = {};
+OۆO.addSlides = (newSlides, target) => {
+    Object.keys(newSlides).forEach(key => {
+        const value = newSlides[key];
+        const replacements = { '${k}':key, '${v}':value };
+        OۆO.setTemplate(
+            'components/slide',
+            target,
+            replacements,
+            () => {
+                OۆO.slides[key] = value;
+                OۆO.cycleSlides();
+            });
+    });    
+};
+OۆO.clearSlides = (oldSlides) => {
+    Object.keys(oldSlides).forEach(key => {
+        delete OۆO.slides[key];
+    });
+};
+OۆO.cycleSlides = () => {
+    if (typeof slidesTimeout !== 'undefined') {
+        clearTimeout(slidesTimeout);
+    }
+    let next = false;
+    const keys = Object.keys(OۆO.slides);
+    const min = 0;
+    const max = keys.length;
+    if (max > 0) {
+        const target = Math.floor(Math.random() * (max - min)) + min;
+        for (let i=0; i<max; i++) {
+            const key = keys[i];
+            const slideHTML = document.getElementById(key);
+            if (!slideHTML) {
+                delete OۆO.slides[key];
+                continue;
+            }
+            if (i === target) {
+                slideHTML.classList.remove('hidden');
+            } else {
+                slideHTML.classList.add('hidden');
+            }
+        }
+    }
+    slidesTimeout = setTimeout(() => { OۆO.cycleSlides(); }, 5000);
+};
+OۆO.cycleSlides();

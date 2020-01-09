@@ -14,7 +14,7 @@
             <form onsubmit="event.preventDefault(); getPasscode(this)">
                 <span>
                     <label for="phone">13 Digit Phone Number:</label>
-                    <input type="text" name="phone" placeholder="#############" pattern="^\d{13}$" required />
+                    <input id="phone" type="text" name="phone" placeholder="#############" pattern="^\d{13}$" required />
                 </span>
                 <button type="submit">Get Passcode</button>
             </form>

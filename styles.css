@@ -49,7 +49,7 @@ button,
 input {
     border-style: solid;
     border-color: rgba(0,0,0,0);
-    border-width: 2px;
+    border-width: 0px;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
 }
@@ -69,28 +69,26 @@ form {
 }
 
 div {
-    padding: 2px;
+    padding: 2px 0;
 }
 
+label,
+input,
 button {
+    position: relative;
+    font-size: 16px;
     background: white;
-    padding: 0;
-    margin: 0;
-}
-
-button:not(disabled) {
-    cursor: pointer;
-}
-
-input {
-    height: 16px;
-    padding: 0;
+    padding: 0 2px;
     margin: 0;
 }
 
 input:disabled {
     background: white;
     cursor: text;
+}
+
+input:invalid {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.24), 0 2px 6px rgba(0,0,0,0.48);
 }
 
 th {
@@ -133,4 +131,9 @@ footer:before {
     padding: 0 !important;
     margin: 0;
     box-shadow: 0 !important;
+}
+
+.slide {
+    text-align: center;
+    width: 100%;
 }
