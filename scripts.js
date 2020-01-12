@@ -36,6 +36,15 @@ OۆO.setTemplate = (template, target, replacements, callback) => {
     xhttp.send();
 };
 
+/// dark mode ///
+OۆO.setDarkMode = (on) => {
+    if (on) {
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
+};
+
 /// auth ///
 OۆO.user = { }
 
